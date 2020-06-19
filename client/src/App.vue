@@ -4,7 +4,7 @@
       <b-navbar-brand>
         <b-navbar-toggle target="nav-text-collapse" id="toggleable-button"></b-navbar-toggle>
         <router-link to="/">
-          <img src="../public/images/ifood-logo.png" id="logo" />
+          <img src="../public/images/ifood-logo.png" width="100"/>
         </router-link>
         <b-nav-text id="desktop-text" class="nav-text">para Restaurantes</b-nav-text>
       </b-navbar-brand>
