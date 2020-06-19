@@ -7,7 +7,7 @@
           <b-card img-alt="Image" img-top tag="article" class="main-card">
             <span class="anuncio">Seja um restaurante parceiro!</span>
 
-            <b-form v-if="show">
+            <b-form @submit="onSubmit" v-if="show">
               <b-form-group id="input-group-1" label="Nome Completo:" label-for="name">
                 <b-form-input
                   id="name"
@@ -39,13 +39,17 @@
               <b-form-group id="input-group-4" label="CNPJ:" label-for="cnpj">
                 <b-form-input
                   id="cnpj"
-                  type="number"
-                  max="14"
                   v-model="form.cnpj"
-                  placeholder="Digite o CNPJ da sua empresa"
-                  description="O CNPJ deve possuir 14 números e deve ser digitado sem pontos, traços ou barras"
+                  :state="validation"
+                  placeholder="Digite o CNPJ da sua empresa (somente números)"
                   required
                 ></b-form-input>
+                <b-form-invalid-feedback :state="validation">
+                  O CNPJ deve possuir 14 números e deve ser digitado sem pontos, traços ou barras.
+                </b-form-invalid-feedback>
+                <b-form-valid-feedback :state="validation">
+                  CNPJ validado.
+                </b-form-valid-feedback>
               </b-form-group>
 
               <b-form-group id="input-group-3" label="Tipo de negócio:" label-for="business-type">
@@ -67,7 +71,9 @@
                 ></b-form-input>
               </b-form-group>
 
-              <b-button v-b-modal.modal-1 block variant="danger" size="lg">Solicitar cadastro</b-button>
+              <b-button type="submit" block variant="danger" size="lg">Solicitar cadastro</b-button>
+
+              <!--<b-button v-b-modal.modal-1 block variant="danger" size="lg">Solicitar cadastro</b-button>
               <b-modal id="modal-1" title="Cadastro Ifood">
                 <div v-if="isNull()">
                   <p class="my-4"><b>Nome:</b> {{form.name}}</p>
@@ -80,7 +86,7 @@
                 <div v-else>
                   <p class="my-4">Por favor, preencha os dados necessários.</p>
                 </div>
-              </b-modal>
+              </b-modal>-->
             </b-form>
           </b-card>
         </b-col>
@@ -95,6 +101,8 @@
 </template>
 
 <script>
+import router from '../router'
+import axios from 'axios'
   export default {
     data() {
       return {
@@ -103,7 +111,7 @@
           name: null,
           business_type: null,
           business_name: null,
-          cnpj: null,
+          cnpj: "",
           password: null
         },
         business: [{ text: 'Escolha uma opção', value: null }, { text: 'Restaurante', value: 'Restaurante'}, { text: 'Mercado', value: 'Mercado' }, { text: 'Lanches e fast food', value: 'Lanches e fast food'}, { text: 'Doceria', value: 'Doceria'}],
@@ -113,13 +121,25 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        //alert(JSON.stringify(this.form))
+        axios.post('https://5eeca45a5e298b0016b69f88.mockapi.io/api/form-vue/business', this.form)
+          .then(function () {
+            router.replace('/business')
+          })
+          .catch(({ response }) => {
+            console.log(response.status)
+          })
       },
       isNull() {
         if (this.form.email !== null && this.form.name !== null && this.form.business_type !== null && this.form.business_name !== null && this.form.business_type !== null && this.form.password !== null && (this.form.cnpj).length === 14) {
           return true
         }
         return false
+      }
+    },
+    computed: {
+      validation() {
+        return this.form.cnpj.length === 14
       }
     }
   }

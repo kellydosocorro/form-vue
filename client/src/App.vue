@@ -13,11 +13,13 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-text id="mobile-text" class="nav-text">para Restaurantes</b-nav-text>
           <b-button-group>
+            <router-link to="/">
             <b-button squared variant="outline-light">
               Cadastrar
             </b-button>
-            <b-button squared variant="outline-light">Entrar</b-button>
-          </b-button-group>
+            </router-link>
+            <router-link to="/" title="Exemplo de botão"><b-button squared variant="outline-light">Entrar</b-button></router-link>
+          </b-button-group>   
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
