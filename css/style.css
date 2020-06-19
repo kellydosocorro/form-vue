@@ -1,0 +1,126 @@
+* {
+  margin:0;
+}
+body {
+  background: #fff;
+  height: 100%;
+}
+
+/* Main div
+----------------------------------------------------------*/
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  background-image: url(../images/ilustration.png);
+  background-repeat: no-repeat;
+  background-position-x: 97%;
+  background-position-y: 50%;
+}
+
+/* Form Card
+----------------------------------------------------------*/
+#main-card {
+  top:-100px!important;
+  box-sizing: border-box;
+}
+@media screen and (min-width:768px) {
+  #formulario {
+    max-width: 50%;
+  }
+}
+@media screen and (max-width:767px) {
+  #formulario {
+    max-width: 100%;
+  }
+}
+
+/* Wave Effect
+----------------------------------------------------------*/
+#wave {
+  background: #dc3545;
+  margin-top:-30px;
+}
+#wave::after {
+  content: "";
+  position: relative;
+  left: -3rem;
+  top: calc( 3rem - 4rem / 2);
+  float: left;
+  display: block;
+  height: 4rem;
+  width: 100vw;
+  background: hsla(0, 0%, 100%, 0.5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 70 500 60' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='500' height='300' style='stroke: none; fill: %23ffff;' /%3E%3Cpath d='M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z' style='stroke: none; fill: %23dc3545;'%3E%3C/path%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+#wave {
+  margin:0;
+  padding: 3rem;
+}
+
+/* Texto
+----------------------------------------------------------*/
+.anuncio {
+  white-space: normal;
+  color:#CD3333;
+  font-size: 2em;
+  line-height: 2rem;
+  text-transform: uppercase;
+  display: block;
+  letter-spacing: -2px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align:center;
+}
+
+/* Logo Style
+----------------------------------------------------------*/
+#logo {
+  max-width: 110px;
+}
+
+/* Navbar
+----------------------------------------------------------*/
+#nav {
+  color: #fff !important;
+  padding: 7px 10%;
+}
+#toggleable-button {
+  align-content: center;
+  margin-bottom: 7px;
+}
+.nav-text {
+  color: #fff !important;
+  font-style: italic;
+  margin-left: 10px;
+  font-size: 1rem;
+  /* font-weight: bold; */
+}
+#nav a {
+  font-weight: bold;
+  color: #fff;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+@media only screen and (min-width: 375px) {
+  #desktop-text {
+    display: inline;
+  }
+  #mobile-text {
+    display: none;
+  }
+}
+@media only screen and (max-width: 376px) {
+  #desktop-text {
+    display: none;
+  }
+  #mobile-text {
+    display: inline;
+    text-align: right;
+  }
+}
